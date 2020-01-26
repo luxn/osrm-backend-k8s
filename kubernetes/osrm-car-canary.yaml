@@ -21,33 +21,29 @@ spec:
       labels:
         app: osrm-car
         track: canary
-    spec:
-      volumes:
-      - name: osrm-secret-volume
-        secret:
-          secretName: osrm-storage-secret
+    spec:      
       containers:
       - name: osrm-backend-k8s
-        image: peterevans/osrm-backend-k8s:latest
+        image: .../osrm-backend-k8s:latest
         env:
         - name: OSRM_MODE
           value: CREATE
         - name: OSRM_PBF_URL
-          value: "http://download.geofabrik.de/asia/maldives-latest.osm.pbf"
+          value: "https://download.geofabrik.de/europe/germany/hamburg-latest.osm.pbf"
         - name: OSRM_DATA_LABEL
-          value: maldives-car-20161209
+          value: hamburg-car-20200126
         - name: OSRM_GRAPH_PROFILE
           value: car
-        - name: OSRM_SA_KEY_PATH
-          value: "/etc/osrm-secret-volume/service-account-key.json"
-        - name: OSRM_PROJECT_ID
-          value: my-project
-        - name: OSRM_GS_BUCKET
-          value: "gs://my-bucket"
-        volumeMounts:
-        - name: osrm-secret-volume
-          readOnly: true
-          mountPath: /etc/osrm-secret-volume
+        #- name: OSRM_GRAPH_PROFILE_URL
+        #  value: https://.../profile.lua
+        - name: OSRM_AWS_ACCESS_KEY_ID
+          value: ...
+        - name: OSRM_AWS_SECRET_ACCESS_KEY
+          value: ...
+        - name: OSRM_AWS_DEFAULT_REGION
+          value: eu-central-1
+        - name: OSRM_AWS_S3_BUCKET
+          value: s3://...
         ports:
         - containerPort: 5000
         readinessProbe:

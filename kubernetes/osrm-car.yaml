@@ -21,29 +21,23 @@ spec:
       labels:
         app: osrm-car
         track: stable
-    spec:
-      volumes:
-      - name: osrm-secret-volume
-        secret:
-          secretName: osrm-storage-secret
+    spec:     
       containers:
       - name: osrm-backend-k8s
-        image: peterevans/osrm-backend-k8s:latest
+        image: .../osrm-backend-k8s:latest
         env:
         - name: OSRM_MODE
-          value: RESTORE
+          value: RESTORE       
         - name: OSRM_DATA_LABEL
-          value: maldives-car-20161209
-        - name: OSRM_SA_KEY_PATH
-          value: "/etc/osrm-secret-volume/service-account-key.json"
-        - name: OSRM_PROJECT_ID
-          value: my-project
-        - name: OSRM_GS_BUCKET
-          value: "gs://my-bucket"
-        volumeMounts:
-        - name: osrm-secret-volume
-          readOnly: true
-          mountPath: /etc/osrm-secret-volume
+          value: hamburg-car-20200126        
+        - name: OSRM_AWS_ACCESS_KEY_ID
+          value: ...
+        - name: OSRM_AWS_SECRET_ACCESS_KEY
+          value: ...
+        - name: OSRM_AWS_DEFAULT_REGION
+          value: eu-central-1
+        - name: OSRM_AWS_S3_BUCKET
+          value: s3://...  
         ports:
         - containerPort: 5000
         readinessProbe:
