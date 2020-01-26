@@ -1,4 +1,4 @@
-FROM peterevans/xenial-gcloud:1.2.23
+FROM ubuntu:bionic
 
 LABEL \
   maintainer="Peter Evans <mail@peterevans.dev>" \
@@ -33,9 +33,10 @@ RUN apt-get -y update \
     pkg-config \
     gcc \
     python-dev \
-    python-setuptools \    
+    python-pip \
+    python-setuptools \
+    awscli \
  && apt-get clean \
- && easy_install -U pip \
  && pip install -U crcmod \
  && rm -rf /var/lib/apt/lists/* \
  && rm -rf /tmp/* /var/tmp/*
