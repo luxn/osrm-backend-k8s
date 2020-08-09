@@ -1,5 +1,5 @@
 # osrm-backend for Kubernetes
-Open Source Routing Machine (OSRM) [osrm-backend](https://github.com/Project-OSRM/osrm-backend) for Kubernetes on AWS EKS. Forked on peter-evans/osrm-backend-k8s which used GKE.
+Open Source Routing Machine (OSRM) [osrm-backend](https://github.com/Project-OSRM/osrm-backend) for Kubernetes on AWS EKS. *Forked from peter-evans/osrm-backend-k8s which used GKE.*
 
 This Docker image and sample Kubernetes configuration files are one solution to persisting [osrm-backend](https://github.com/Project-OSRM/osrm-backend) data and providing immutable deployments.
 
